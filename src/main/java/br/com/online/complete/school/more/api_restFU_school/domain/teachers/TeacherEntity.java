@@ -23,4 +23,14 @@ public class TeacherEntity extends PersonEntity {
         this.enrollment = data.enrollment();
         this.subject = data.subject();
             }
+
+    public void updateData(@Valid TeacherUpdateData data) {
+        super.updateData(data.person());
+        if (data.workPhone() != null) {
+            this.workPhone = data.workPhone();
+        }
+        if (data.subject() != null) {
+            this.subject = data.subject();
+        }
+    }
 }
