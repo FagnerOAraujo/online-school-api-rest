@@ -1,4 +1,4 @@
-alter table teachers add column active tinyint;
-update teachers set active = 1;
-alter table teachers modify active tinyint not null;
+alter table students add column active tinyint;
+update students set active = 1;
+alter table students modify active tinyint not null;
 

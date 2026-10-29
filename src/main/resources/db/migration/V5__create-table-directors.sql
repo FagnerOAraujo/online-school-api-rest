@@ -1,14 +1,16 @@
-CREATE TABLE teachers (
+CREATE TABLE directors (
 
     id BIGINT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     phone VARCHAR(20) NOT NULL,
-    workPhone VARCHAR(20) NOT NULL,
+    businessPhone VARCHAR(20) NOT NULL,
     mobilePhone VARCHAR(20) NOT NULL,
-    enrollment VARCHAR(6) NOT NULL UNIQUE,
+    professionalRegistration VARCHAR(9) NOT NULL UNIQUE,
     registration VARCHAR(6) NOT NULL UNIQUE,
-    subject VARCHAR(100) NOT NULL,
+    position VARCHAR(100) NOT NULL,
+    appointmentDate VARCHAR(20) NOT NULL,
+    termEndDate VARCHAR(20) NOT NULL,
     rg VARCHAR(20) NOT NULL,
     cpf VARCHAR(20) NOT NULL UNIQUE,
     motherName VARCHAR(100) NOT NULL,

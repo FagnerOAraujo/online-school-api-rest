@@ -38,7 +38,7 @@ public class TeacherController {
             @PageableDefault(size = 10, sort = {"name"})
             Pageable paginacao
     ) {
-        var page = repository.findAll(paginacao).map(TeacherListData::new);
+        var page = repository.findAllByActiveTrue(paginacao).map(TeacherListData::new);
         return ResponseEntity.ok(page);
     }
 
@@ -53,6 +53,17 @@ public class TeacherController {
         teacher.updateData(data);
         var teacherUpdateData = new TeacherResponseData(teacher);
         return ResponseEntity.ok(teacherUpdateData);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @Transactional
+    public ResponseEntity deactivateTeacher(
+            @PathVariable
+            Long id
+    ) {
+        var teacher = repository.getReferenceById(id);
+        teacher.deactivateRegistration();
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/created/{id}")

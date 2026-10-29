@@ -38,7 +38,7 @@ public class StudentController {
             @PageableDefault(size = 10, sort = {"name"})
             Pageable paginacao
     ) {
-        var page = repository.findAll(paginacao).map(StudentListData::new);
+        var page = repository.findAllByActiveTrue(paginacao).map(StudentListData::new);
         return ResponseEntity.ok(page);
     }
 
@@ -53,6 +53,17 @@ public class StudentController {
         student.updateData(data);
         var studentDataUpdate = new StudentResponseData(student);
         return ResponseEntity.ok(studentDataUpdate);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @Transactional
+    public ResponseEntity deactivateStudent(
+            @PathVariable
+            Long id
+    ) {
+        var student = repository.getReferenceById(id);
+        student.deactivateRegistration();
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/created/{id}")

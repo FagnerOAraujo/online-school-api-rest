@@ -17,6 +17,7 @@ public class PersonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Boolean active;
     private String name;
     private String email;
     private String phone;
@@ -31,6 +32,7 @@ public class PersonEntity {
     private Address address;
 
     public PersonEntity(PersonRequestRegistrationData data) {
+        this.active = true;
         this.name = data.name();
         this.email = data.email();
         this.phone = data.phone();
@@ -69,7 +71,7 @@ public class PersonEntity {
         }
     }
 
-    public void delete() {
-
+    public void deactivateRegistration() {
+        this.active = false;
     }
 }
